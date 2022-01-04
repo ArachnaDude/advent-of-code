@@ -1,4 +1,4 @@
-const depths = require("./depths");
+const depthArrNum = require("./depths.js");
 
 function depthCount(arr) {
   const depthObj = {
@@ -15,7 +15,10 @@ function depthCount(arr) {
     }
   }
 
+  console.log(depthObj.depthIncrease);
   return depthObj;
 }
+
+console.log(depthCount(depthArrNum));
 
 module.exports = depthCount;

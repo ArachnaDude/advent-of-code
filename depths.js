@@ -1,3 +1,5 @@
+const { typeOf } = require("react-is");
+
 const depths = `183
 185
 186
@@ -2000,8 +2002,10 @@ const depths = `183
 9875`;
 
 const depthArrString = depths.split("\n");
+
 const depthArrNum = depthArrString.map(function (number) {
   const convertedNumber = parseInt(number);
   return convertedNumber;
 });
-module.exports = { depthArrNum };
+
+module.exports = depthArrNum;
