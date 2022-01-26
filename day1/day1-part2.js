@@ -23,7 +23,6 @@ slidingDepthCount = (arr) => {
   return depthObj;
 };
 
-//meaningless comment
 
 console.log(slidingDepthCount(depthArrNum).depthIncrease);
 

@@ -1,5 +1,3 @@
-const { typeOf } = require("react-is");
-
 const depths = `183
 185
 186

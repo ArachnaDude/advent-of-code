@@ -1,0 +1,1 @@
+const formattedDirections = require("./directions");
