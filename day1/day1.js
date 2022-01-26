@@ -14,11 +14,9 @@ function depthCount(arr) {
       depthObj.depthDecrease++;
     }
   }
-
-  //console.log(depthObj.depthIncrease);
   return depthObj;
 }
 
-//console.log(depthCount(depthArrNum));
+console.log(depthCount(depthArrNum));
 
 module.exports = depthCount;

@@ -1,22 +1,28 @@
 const depthArrNum = require("./depths.js");
 
-exports.slidingDepthCount = (arr) => {
-  console.log("function begins");
-
+slidingDepthCount = (arr) => {
   const depthObj = {
     depthIncrease: 0,
     depthDecrease: 0,
+    slidingScaleArr: [],
   };
-
-  const slidingScaleArr = [];
 
   for (let i = 0; i < arr.length; i++) {
     let slidingScale = arr[i] + arr[i + 1] + arr[i + 2];
     if (!isNaN(slidingScale)) {
-      slidingScaleArr.push(slidingScale);
-    } else {
-      console.log("not a number, homeboy");
+      depthObj.slidingScaleArr.push(slidingScale);
     }
   }
-  return slidingScaleArr[0];
+
+  for (let j = 0; j < depthObj.slidingScaleArr.length; j++) {
+    if (depthObj.slidingScaleArr[j] > depthObj.slidingScaleArr[j - 1]) {
+      depthObj.depthIncrease++;
+    }
+  }
+
+  return depthObj;
 };
+
+console.log(slidingDepthCount(depthArrNum).depthIncrease);
+
+module.exports = slidingDepthCount;
