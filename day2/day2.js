@@ -4,18 +4,32 @@ directionFinder = (arr) => {
   const directionObject = {
     horizontalPosition: 0,
     depth: 0,
+    multValue: 0,
   };
   console.log(directionObject, "pre for loop");
   for (let i = 0; i < arr.length; i++) {
-    if (arr[i][0] === "forward") {
-      directionObject.horizontalPosition += arr[i][1];
-    }
-    if (arr[i][0] === "down") {
-      directionObject.depth += arr[i][1];
+    let direction = arr[i][0];
+    let increment = arr[i][1];
+
+    switch (direction) {
+      case "forward":
+        directionObject.horizontalPosition += increment;
+        break;
+      case "up":
+        directionObject.depth -= increment;
+        break;
+      case "down":
+        directionObject.depth += increment;
+        break;
     }
   }
-  console.log(directionObject, "post for loop");
+
+  directionObject.multValue =
+    directionObject.horizontalPosition * directionObject.depth;
+
   return directionObject;
 };
+
+console.log(directionFinder(formattedDirections));
 
 module.exports = directionFinder;
