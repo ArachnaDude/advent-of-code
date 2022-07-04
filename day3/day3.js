@@ -14,11 +14,3 @@ const powerConsumption = (arr) => {
 module.exports = powerConsumption;
 
 //slice to chop down the string for each iteration?
-
-for (let i = 0; i < arr.length; i++) {
-  if ([i] === 0) {
-    return null;
-  } else {
-    return undefined;
-  }
-}
