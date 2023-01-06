@@ -14,3 +14,5 @@ const powerConsumption = (arr) => {
 module.exports = powerConsumption;
 
 //slice to chop down the string for each iteration?
+// shouldn't use for loop for this
+// epsilon is invert of gamma
