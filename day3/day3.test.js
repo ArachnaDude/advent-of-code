@@ -39,7 +39,7 @@ describe("powerConsumption", () => {
     expect(functionCall).toHaveProperty("gammaRate");
     expect(functionCall).toHaveProperty("epsilonRate");
   });
-  test("assigns mode of the first digit to gammaRate", () => {
+  test.only("assigns mode of the first digit to gammaRate", () => {
     const testArr = [
       "0",
       "1",
@@ -57,7 +57,7 @@ describe("powerConsumption", () => {
     const functionCall = powerConsumption(testArr);
     expect(functionCall.gammaRate).toBe(1);
   });
-  test.only("assigns mode of first and second digit to gammaRate", () => {
+  test("assigns mode of first and second digit to gammaRate", () => {
     const testArr = [
       "00",
       "11",
