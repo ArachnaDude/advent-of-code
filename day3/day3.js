@@ -1,7 +1,11 @@
 const diagnosticsArr = require("./diagnostics");
 
 const powerConsumption = (arr) => {
-  const powerObj = { gammaRate: 0, epsilonRate: 0 };
+  const powerObj = {
+    gammaRate: 0,
+    epsilonRate: 0,
+    powerUsage: 0,
+  };
 
   const modeArray = [];
   const antiModeArray = [];
@@ -23,21 +27,18 @@ const powerConsumption = (arr) => {
     const antiMode = (num) => {
       return num === 0 ? 1 : 0;
     };
-    console.log(digitArr, `array of digits at position ${i}`);
-    console.log(getMode(digitArr), `mode of digits at position ${i}`);
-    console.log(
-      antiMode(getMode(digitArr)),
-      `anti-mode of digits at position ${i}`
-    );
+
     modeArray.push(getMode(digitArr));
     antiModeArray.push(antiMode(getMode(digitArr)));
   }
   powerObj.gammaRate = parseInt(modeArray.join(""), 2);
   powerObj.epsilonRate = parseInt(antiModeArray.join(""), 2);
+  powerObj.powerUsage = powerObj.gammaRate * powerObj.epsilonRate;
 
+  console.log(powerObj);
   return powerObj;
 };
 
-module.exports = powerConsumption;
+powerConsumption(diagnosticsArr);
 
-//
+module.exports = powerConsumption;
