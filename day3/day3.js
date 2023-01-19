@@ -39,6 +39,8 @@ const powerConsumption = (arr) => {
   return powerObj;
 };
 
-powerConsumption(diagnosticsArr);
+// powerConsumption(diagnosticsArr);
 
-module.exports = powerConsumption;
+const lifeSupport = (arr) => {};
+
+module.exports = { powerConsumption, lifeSupport };
