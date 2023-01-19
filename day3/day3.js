@@ -41,6 +41,14 @@ const powerConsumption = (arr) => {
 
 // powerConsumption(diagnosticsArr);
 
-const lifeSupport = (arr) => {};
+const lifeSupport = (arr) => {
+  const powerObj = {
+    "O2 rate": 0,
+    "CO2 scrubber rate": 0,
+    lifeSupportRating: 0,
+  };
+
+  return powerObj;
+};
 
 module.exports = { powerConsumption, lifeSupport };
