@@ -133,6 +133,24 @@ describe("powerConsumption", () => {
   });
 });
 
-describe("lifeSupport", () => {
-  test("when passed an array, function returns an object", () => {});
+describe.only("lifeSupport", () => {
+  test("when passed an array, function returns an object", () => {
+    const testArr = [
+      "00100",
+      "11110",
+      "10110",
+      "10111",
+      "10101",
+      "01111",
+      "00111",
+      "11100",
+      "10000",
+      "11001",
+      "00010",
+      "01010",
+    ];
+    const functionCall = lifeSupport(testArr);
+    const type = typeof functionCall;
+    expect(type).toBe("object");
+  });
 });
