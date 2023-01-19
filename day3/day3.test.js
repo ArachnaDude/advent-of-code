@@ -1,4 +1,4 @@
-const powerConsumption = require("./day3");
+const { powerConsumption, lifeSupport } = require("./day3");
 
 describe("powerConsumption", () => {
   test("when passed an array, function returns an object", () => {
@@ -131,4 +131,8 @@ describe("powerConsumption", () => {
     expect(functionCall.epsilonRate).toBe(9);
     expect(functionCall.powerUsage).toBe(198);
   });
+});
+
+describe("lifeSupport", () => {
+  test("when passed an array, function returns an object", () => {});
 });
