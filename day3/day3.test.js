@@ -93,7 +93,7 @@ describe("powerConsumption", () => {
     const functionCall = powerConsumption(testArr);
     expect(functionCall.gammaRate).toBe(22);
   });
-  test.only("assigns decimal converted anti-mode of 5 digit elements to epsilonRate", () => {
+  test("assigns decimal converted anti-mode of 5 digit elements to epsilonRate", () => {
     const testArr = [
       "00100",
       "11110",
@@ -110,5 +110,25 @@ describe("powerConsumption", () => {
     ];
     const functionCall = powerConsumption(testArr);
     expect(functionCall.epsilonRate).toBe(9);
+  });
+  test("calculates power usage by multiplying decimal converted gamma and epsilon rates", () => {
+    const testArr = [
+      "00100",
+      "11110",
+      "10110",
+      "10111",
+      "10101",
+      "01111",
+      "00111",
+      "11100",
+      "10000",
+      "11001",
+      "00010",
+      "01010",
+    ];
+    const functionCall = powerConsumption(testArr);
+    expect(functionCall.gammaRate).toBe(22);
+    expect(functionCall.epsilonRate).toBe(9);
+    expect(functionCall.powerUsage).toBe(198);
   });
 });
