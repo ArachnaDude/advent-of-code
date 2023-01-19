@@ -39,7 +39,7 @@ describe("powerConsumption", () => {
     expect(functionCall).toHaveProperty("gammaRate");
     expect(functionCall).toHaveProperty("epsilonRate");
   });
-  test.only("assigns decimal converted mode of array of 1 digit elements to gammaRate", () => {
+  test("assigns decimal converted mode of array of 1 digit elements to gammaRate", () => {
     const testArr = [
       "0",
       "1",
@@ -57,7 +57,7 @@ describe("powerConsumption", () => {
     const functionCall = powerConsumption(testArr);
     expect(functionCall.gammaRate).toBe(1);
   });
-  test.only("assigns decimal conveted mode of array of 2 digit elements to gammaRate", () => {
+  test("assigns decimal conveted mode of array of 2 digit elements to gammaRate", () => {
     const testArr = [
       "00",
       "11",
