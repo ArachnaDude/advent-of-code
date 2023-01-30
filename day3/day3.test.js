@@ -172,7 +172,7 @@ describe.only("lifeSupport", () => {
     const functionCall = lifeSupport(testArr);
     expect(functionCall.modeArrayCopy).toEqual(modeArr);
   });
-  test.only("calculates mode of two digit array of values, and removes non-modal values", () => {
+  test("calculates mode of two digit array of values, and removes non-modal values", () => {
     const testArr = [
       "00",
       "11",
@@ -191,8 +191,27 @@ describe.only("lifeSupport", () => {
     const functionCall = lifeSupport(testArr);
     expect(functionCall.modeArrayCopy).toEqual(modeArr);
   });
+  test("calculates mode of five digit array of values, removing non-modal values", () => {
+    const testArr = [
+      "00100",
+      "11110",
+      "10110",
+      "10111",
+      "10101",
+      "01111",
+      "00111",
+      "11100",
+      "10000",
+      "11001",
+      "00010",
+      "01010",
+    ];
+    const modeArr = ["10111"];
+    const functionCall = lifeSupport(testArr);
+    expect(functionCall.modeArrayCopy).toEqual(modeArr);
+  });
 
-  test("calculates anti-mode of one digit array of values, and removes modal-values", () => {
+  test("calculates anti-mode of one digit array of values, and removes modal values", () => {
     const testArr = [
       "0",
       "1",
@@ -208,6 +227,25 @@ describe.only("lifeSupport", () => {
       "0",
     ];
     const antiModeArr = ["0", "0", "0", "0", "0"];
+    const functionCall = lifeSupport(testArr);
+    expect(functionCall.antiModeArrayCopy).toEqual(antiModeArr);
+  });
+  test("calculates anti-mode of five digit array of values, and removes modal values", () => {
+    const testArr = [
+      "00100",
+      "11110",
+      "10110",
+      "10111",
+      "10101",
+      "01111",
+      "00111",
+      "11100",
+      "10000",
+      "11001",
+      "00010",
+      "01010",
+    ];
+    const antiModeArr = ["01010"];
     const functionCall = lifeSupport(testArr);
     expect(functionCall.antiModeArrayCopy).toEqual(antiModeArr);
   });
