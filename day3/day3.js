@@ -41,8 +41,8 @@ const powerConsumption = (arr) => {
 
 const lifeSupport = (arr) => {
   const powerObj = {
-    "O2 rate": 0,
-    "CO2 scrubber rate": 0,
+    oxygenRating: 0,
+    scrubberRating: 0,
     lifeSupportRating: 0,
     modeArrayCopy: [...arr],
     antiModeArrayCopy: [...arr],
@@ -63,7 +63,7 @@ const lifeSupport = (arr) => {
         if (array[j] === "0") zeroCount++;
         else oneCount++;
       }
-      return zeroCount > oneCount ? "0" : "1";
+      return oneCount >= zeroCount ? "1" : "0";
     };
     let modeOfNthDigit = getMode(copiedArr);
     console.log(modeOfNthDigit, "mode of element", i);
@@ -79,7 +79,3 @@ const lifeSupport = (arr) => {
 };
 
 module.exports = { powerConsumption, lifeSupport };
-
-//loop through first digit of each element.
-//calculate mode of first digit
-// if first digit != mode, delete it
