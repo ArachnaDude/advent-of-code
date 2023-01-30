@@ -51,11 +51,10 @@ const lifeSupport = (arr) => {
   const strLength = arr[0].length;
 
   for (let i = 0; i < strLength; i++) {
-    console.log(powerObj.modeArrayCopy, "modeArrayCopy before loop");
     // provides an array of all values at position i
     let digitArr = powerObj.modeArrayCopy.map((element) => element[i]);
-    console.log(digitArr, "array of digits at position", i);
-    let copiedArr = [...digitArr];
+
+    // gets mode of values at position i. If 1s and 0s are equal, returns 1
     const getMode = (array) => {
       let zeroCount = 0;
       let oneCount = 0;
@@ -65,15 +64,29 @@ const lifeSupport = (arr) => {
       }
       return oneCount >= zeroCount ? "1" : "0";
     };
-    let modeOfNthDigit = getMode(copiedArr);
-    console.log(modeOfNthDigit, "mode of element", i);
-    const filteredArray = powerObj.modeArrayCopy.filter((digit) => {
-      console.log(digit, "digit");
+    const getAntiMode = (num) => {
+      return num === "0" ? "1" : "0";
+    };
+    let modeOfNthDigit = getMode(digitArr);
+    let antiModeOfNthDigit = getAntiMode(modeOfNthDigit);
+
+    const filteredModeArray = powerObj.modeArrayCopy.filter((digit) => {
       return digit[i] === modeOfNthDigit;
     });
-    console.log(filteredArray, "filteredArray");
-    powerObj.modeArrayCopy = filteredArray;
+    const filteredAntiModeArray = powerObj.antiModeArrayCopy.filter((digit) => {
+      return digit[i] === antiModeOfNthDigit;
+    });
+
+    // prevents loop from erasing final value
+    if (powerObj.modeArrayCopy.length !== 1) {
+      powerObj.modeArrayCopy = filteredModeArray;
+    }
+    if (powerObj.antiModeArrayCopy.length !== 1) {
+      powerObj.antiModeArrayCopy = filteredAntiModeArray;
+    }
   }
+  console.log(powerObj.modeArrayCopy);
+  console.log(powerObj.antiModeArrayCopy);
 
   return powerObj;
 };
