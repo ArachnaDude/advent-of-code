@@ -70,6 +70,7 @@ const lifeSupport = (arr) => {
     let modeOfNthDigit = getMode(digitArr);
     let antiModeOfNthDigit = getAntiMode(modeOfNthDigit);
 
+    // replaces respective powerObj arrays with filtered versions
     const filteredModeArray = powerObj.modeArrayCopy.filter((digit) => {
       return digit[i] === modeOfNthDigit;
     });
@@ -77,7 +78,7 @@ const lifeSupport = (arr) => {
       return digit[i] === antiModeOfNthDigit;
     });
 
-    // prevents loop from erasing final value
+    // prevents loop from erasing final correct value
     if (powerObj.modeArrayCopy.length !== 1) {
       powerObj.modeArrayCopy = filteredModeArray;
     }
@@ -85,8 +86,10 @@ const lifeSupport = (arr) => {
       powerObj.antiModeArrayCopy = filteredAntiModeArray;
     }
   }
-  console.log(powerObj.modeArrayCopy);
-  console.log(powerObj.antiModeArrayCopy);
+
+  powerObj.oxygenRating = parseInt(powerObj.modeArrayCopy[0], 2);
+  powerObj.scrubberRating = parseInt(powerObj.antiModeArrayCopy[0], 2);
+  powerObj.lifeSupportRating = powerObj.oxygenRating * powerObj.scrubberRating;
 
   return powerObj;
 };
