@@ -249,4 +249,24 @@ describe.only("lifeSupport", () => {
     const functionCall = lifeSupport(testArr);
     expect(functionCall.antiModeArrayCopy).toEqual(antiModeArr);
   });
+  test("correctly converts oxygen rating from binary to decimal, and multiplies result to get life support rating", () => {
+    const testArr = [
+      "00100",
+      "11110",
+      "10110",
+      "10111",
+      "10101",
+      "01111",
+      "00111",
+      "11100",
+      "10000",
+      "11001",
+      "00010",
+      "01010",
+    ];
+    const functionCall = lifeSupport(testArr);
+    expect(functionCall.oxygenRating).toBe(23);
+    expect(functionCall.scrubberRating).toBe(10);
+    expect(functionCall.lifeSupportRating).toBe(230);
+  });
 });
