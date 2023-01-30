@@ -153,4 +153,62 @@ describe.only("lifeSupport", () => {
     const type = typeof functionCall;
     expect(type).toBe("object");
   });
+  test("calculates mode of one digit array of values, and removes non-modal values", () => {
+    const testArr = [
+      "0",
+      "1",
+      "1",
+      "1",
+      "1",
+      "0",
+      "0",
+      "1",
+      "1",
+      "1",
+      "0",
+      "0",
+    ];
+    const modeArr = ["1", "1", "1", "1", "1", "1", "1"];
+    const functionCall = lifeSupport(testArr);
+    expect(functionCall.modeArrayCopy).toEqual(modeArr);
+  });
+  test.only("calculates mode of two digit array of values, and removes non-modal values", () => {
+    const testArr = [
+      "00",
+      "11",
+      "10",
+      "10",
+      "10",
+      "01",
+      "00",
+      "11",
+      "10",
+      "11",
+      "00",
+      "01",
+    ];
+    const modeArr = ["10", "10", "10", "10"];
+    const functionCall = lifeSupport(testArr);
+    expect(functionCall.modeArrayCopy).toEqual(modeArr);
+  });
+
+  test("calculates anti-mode of one digit array of values, and removes modal-values", () => {
+    const testArr = [
+      "0",
+      "1",
+      "1",
+      "1",
+      "1",
+      "0",
+      "0",
+      "1",
+      "1",
+      "1",
+      "0",
+      "0",
+    ];
+    const antiModeArr = ["0", "0", "0", "0", "0"];
+    const functionCall = lifeSupport(testArr);
+    expect(functionCall.antiModeArrayCopy).toEqual(antiModeArr);
+  });
 });
