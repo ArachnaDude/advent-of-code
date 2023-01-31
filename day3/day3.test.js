@@ -1,4 +1,10 @@
-const { powerConsumption, lifeSupport } = require("./day3");
+const {
+  powerConsumption,
+  lifeSupport,
+  filterArrays,
+  getMode,
+  getRating,
+} = require("./day3");
 
 describe("powerConsumption", () => {
   test("when passed an array, function returns an object", () => {
@@ -133,26 +139,7 @@ describe("powerConsumption", () => {
   });
 });
 
-describe.only("lifeSupport", () => {
-  test("when passed an array, function returns an object", () => {
-    const testArr = [
-      "00100",
-      "11110",
-      "10110",
-      "10111",
-      "10101",
-      "01111",
-      "00111",
-      "11100",
-      "10000",
-      "11001",
-      "00010",
-      "01010",
-    ];
-    const functionCall = lifeSupport(testArr);
-    const type = typeof functionCall;
-    expect(type).toBe("object");
-  });
+describe("lifeSupport", () => {
   test("calculates mode of one digit array of values, and removes non-modal values", () => {
     const testArr = [
       "0",
@@ -268,5 +255,51 @@ describe.only("lifeSupport", () => {
     expect(functionCall.oxygenRating).toBe(23);
     expect(functionCall.scrubberRating).toBe(10);
     expect(functionCall.lifeSupportRating).toBe(230);
+  });
+});
+
+const singleDigitTestArr = ["0", "0", "1"];
+const doubleDigitTestArr = ["01", "00", "10"];
+const tripleDigitTestArr = ["011", "001", "101"];
+describe("filterArrays", () => {
+  test("filters a list of strings", () => {
+    const newArray = filterArrays(singleDigitTestArr, "1", 0);
+    expect(newArray).toMatchObject(["1"]);
+  });
+  test("filters a list of strings", () => {
+    const newArray = filterArrays(singleDigitTestArr, "0", 0);
+    expect(newArray).toMatchObject(["0", "0"]);
+  });
+  test("filters an array of 2-character strings", () => {
+    const newArray = filterArrays(doubleDigitTestArr, "1", 1);
+    expect(newArray).toMatchObject(["01"]);
+  });
+});
+
+describe.only("getMode", () => {
+  test("Returns mode of array", () => {
+    const mode = getMode(singleDigitTestArr, 0, "0");
+    expect(mode).toBe("1");
+  });
+
+  test("Returns mode of array", () => {
+    const mode = getMode(tripleDigitTestArr, 2, "1");
+    expect(mode).toBe("1");
+  });
+  test("Returns mode of array", () => {
+    const mode = getMode(
+      ["00100", "11010", "10110", "10111", "10101", "01111"],
+      2,
+      "0"
+    );
+    expect(mode).toBe("0");
+  });
+});
+
+describe.only("getRating", () => {
+  const testArr = ["00100", "11110", "10110", "10111", "10101", "01111"];
+  test("returns an element", () => {
+    expect(getRating(testArr, "1")).toBe("10111");
+    expect(getRating(testArr, "0")).toBe("00100");
   });
 });
