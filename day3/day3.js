@@ -11,7 +11,7 @@ const powerConsumption = (arr) => {
   const antiModeArray = [];
   const strLength = arr[0].length;
   for (let i = 0; i < strLength; i++) {
-    let digitArr = arr.map((element) => element[i]);
+    const digitArr = arr.map((element) => element[i]);
     const getMode = (array) => {
       let zeroCount = 0;
       let oneCount = 0;
@@ -39,59 +39,53 @@ const powerConsumption = (arr) => {
   return powerObj;
 };
 
-const lifeSupport = (arr) => {
-  const powerObj = {
-    oxygenRating: 0,
-    scrubberRating: 0,
-    lifeSupportRating: 0,
-    modeArrayCopy: [...arr],
-    antiModeArrayCopy: [...arr],
-  };
-
-  const strLength = arr[0].length;
-
-  for (let i = 0; i < strLength; i++) {
-    // provides an array of all values at position i
-    let digitArr = powerObj.modeArrayCopy.map((element) => element[i]);
-
-    // gets mode of values at position i. If 1s and 0s are equal, returns 1
-    const getMode = (array) => {
-      let zeroCount = 0;
-      let oneCount = 0;
-      for (let j = 0; j < array.length; j++) {
-        if (array[j] === "0") zeroCount++;
-        else oneCount++;
-      }
-      return oneCount >= zeroCount ? "1" : "0";
-    };
-    const getAntiMode = (num) => {
-      return num === "0" ? "1" : "0";
-    };
-    let modeOfNthDigit = getMode(digitArr);
-    let antiModeOfNthDigit = getAntiMode(modeOfNthDigit);
-
-    // replaces respective powerObj arrays with filtered versions
-    const filteredModeArray = powerObj.modeArrayCopy.filter((digit) => {
-      return digit[i] === modeOfNthDigit;
-    });
-    const filteredAntiModeArray = powerObj.antiModeArrayCopy.filter((digit) => {
-      return digit[i] === antiModeOfNthDigit;
-    });
-
-    // prevents loop from erasing final correct value
-    if (powerObj.modeArrayCopy.length !== 1) {
-      powerObj.modeArrayCopy = filteredModeArray;
+const getMode = (array, index, bias) => {
+  let biasCounter = 0;
+  array.forEach((e) => {
+    if (e[index] === bias) {
+      biasCounter++;
     }
-    if (powerObj.antiModeArrayCopy.length !== 1) {
-      powerObj.antiModeArrayCopy = filteredAntiModeArray;
-    }
+  });
+
+  if (bias === "1") {
+    return biasCounter >= array.length / 2 ? "1" : "0";
+  } else {
+    return biasCounter <= array.length / 2 ? "0" : "1";
   }
-
-  powerObj.oxygenRating = parseInt(powerObj.modeArrayCopy[0], 2);
-  powerObj.scrubberRating = parseInt(powerObj.antiModeArrayCopy[0], 2);
-  powerObj.lifeSupportRating = powerObj.oxygenRating * powerObj.scrubberRating;
-
-  return powerObj;
 };
 
-module.exports = { powerConsumption, lifeSupport };
+const filterArrays = (array, comparisonDigit, index) => {
+  return array.filter((e) => {
+    return e[index] === comparisonDigit;
+  });
+};
+
+const getRating = (array, bias) => {
+  let index = 0;
+
+  while (array.length > 1) {
+    // get mode of current index
+    const mode = getMode(array, index, bias);
+    // filter array using mode and current index
+    array = filterArrays(array, mode, index);
+    index++;
+  }
+  return array[0];
+};
+
+const lifeSupport = (arr) => {
+  const oxygenRating = getRating(arr, "1");
+  const scrubberRating = getRating(arr, "0");
+
+  return parseInt(oxygenRating, 2) * parseInt(scrubberRating, 2);
+};
+
+console.log(lifeSupport(diagnosticsArr));
+
+module.exports = {
+  powerConsumption,
+  lifeSupport,
+  filterArrays,
+  getMode,
+  getRating,
+};
